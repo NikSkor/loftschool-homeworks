@@ -7,12 +7,24 @@ const userJames = {
     lastName: 'bond',
     password: '007'
 }
+const errorWords = {
+    firstName: 'Имя указано не верно',
+    lastName: 'Фамилия указана не верно',
+    password: 'Пароль указан не верно'
+}
+const errorEmpty = {
+    firstName: 'Нужно указать имя',
+    lastName: 'Нужно указать фамилию',
+    password: 'Нужно указать пароль'
+}
+// const warning = {};
 export default class Form extends React.Component {
     state = {
         firstName: '',
         lastName: '',
         password: '',
-        errors: {},
+        errors: {
+        },
         isLogin: false
       }
 
@@ -23,11 +35,26 @@ export default class Form extends React.Component {
 
     submitForm = event => {
         event.preventDefault();
+        const error = {};
+        if (this.state.firstName.toLowerCase() === userJames.firstName && this.state.lastName.toLowerCase() === userJames.lastName && this.state.password === userJames.password) {
+            this.setState({
+                isLogin: true
+            })
+        }
+        Object.keys(errorEmpty).forEach(elem => {
+            if (this.state[elem] === '') {
+                error[elem] = errorEmpty[elem];
+            }
+        })
+        this.setState ({errors: error})
 
-        
-        Object.keys(userJames).forEach(element => {
-            console.log(element);
-        });
+        // if (this.state.firstName === '') {
+            // warning.firstName = errorEmpty.firstName;
+
+        // }
+        // Object.keys(userJames).forEach(element => {
+        //     console.log(element);
+        // });
         // if (userJames.firstName === this.state.firstName) {this.setState ({
         //     isLogin: true
         // })}
