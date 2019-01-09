@@ -45,46 +45,11 @@ export default class Form extends React.Component {
             if (this.state[elem] === '') {
                 error[elem] = errorEmpty[elem];
             }
+            else if (this.state[elem] !== userJames[elem]) {
+                error[elem] = errorWords[elem];
+            }
         })
         this.setState ({errors: error})
-
-        // if (this.state.firstName === '') {
-            // warning.firstName = errorEmpty.firstName;
-
-        // }
-        // Object.keys(userJames).forEach(element => {
-        //     console.log(element);
-        // });
-        // if (userJames.firstName === this.state.firstName) {this.setState ({
-        //     isLogin: true
-        // })}
-    //     const errors=['Нужно указать имя','Нужно указать фамилию','Нужно указать пароль'];
-
-    //     if (this.state.firstName === '') {
-    //         this.setState({ errors: {
-    //             firstName: errors[0]
-    //         } 
-
-                
-    //         })
-    //     } 
-    //     if (this.state.lastName === '') {
-    //         this.setState({
-
-                
-    //         })
-    //     } 
-    //     if (this.state.password === '') {
-    //         this.setState({
-
-                
-    //         })
-    //     }
-
-    //         this.setState({
-    //             errors:{}
-    //         })
-
     }
 
     render() {
