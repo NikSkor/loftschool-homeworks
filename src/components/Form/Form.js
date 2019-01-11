@@ -30,7 +30,8 @@ export default class Form extends React.Component {
 
     changeInput = event => {
 
-    this.setState({[event.target.name]: event.target.value})
+    this.setState({[event.target.name]: event.target.value ,
+    errors: {}})
     }
 
     submitForm = event => {
@@ -53,7 +54,8 @@ export default class Form extends React.Component {
     }
 
     render() {
-        if (this.state.isLogin) {
+        const {isLogin} = this.state;
+        if (isLogin) {
             return (
                 <div className="app-container">
                     <img src={Bond} alt="bond approve" className="t-bond-image"/>
