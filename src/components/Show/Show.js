@@ -14,7 +14,7 @@ class Show extends React.Component {
     }
     render() {
         return(
-
+            <span>Шоу не выбрано</span>
         )
     }
 }
