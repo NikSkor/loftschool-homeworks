@@ -13,23 +13,27 @@ state = {
 }
 
 authorize = (email, password) => {
-  if (email === this.validEmail && password === this.validPassword) {
-    this.setState = {
-      email: email,
-      authorizeError: '',
-      isAuthorized: true
-    }
+  if (email == this.validEmail && password == this.validPassword) {
+    this.setState({
+        email: email,
+        authorizeError: '',
+        isAuthorized: true
+      }
+    )
+
   } else {
-    this.state = {
-      authorizeError: 'Email или пароль введён не верно'
-    }
+    this.setState({
+        authorizeError: 'Email или пароль введён не верно'
+      }
+    )  
   }
 }
 logout = () => {
-  this.setState = {
-    email: '',
-    isAuthorized: false
-  }
+  this.setState({
+      email: '',
+      isAuthorized: false
+    }
+  )  
 
 }
 getProviderValue = () => {
