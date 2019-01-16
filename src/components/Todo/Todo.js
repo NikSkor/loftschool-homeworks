@@ -23,15 +23,27 @@ class Todo extends PureComponent {
   createNewRecord = () => {};
 
   render() {
-    return;
+    return <Card title="Список дел">
+      <div className='todo t-todo-list'>
+        <div className='todo-item todo-item-new'>
+          <input type="text" className='todo-input t-input' placeholder='Введите задачу' />
+          <span className='plus t-plus'>+</span>
+        </div>
+        {this.renderRecord()}
+      </div>
+    </Card>
+    
   }
 
   renderEmptyRecord() {
-    return;
+    return null;
   }
 
   renderRecord = record => {
-    return;
+    return <div className='todo-item t-todo'>
+        <p className='todo-item__text'>SuperMan</p>
+        <span className='todo-item__flag t-todo-complete-flag'>[X]</span>
+      </div>
   };
 }
 
