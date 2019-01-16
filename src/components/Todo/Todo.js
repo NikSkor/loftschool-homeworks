@@ -14,9 +14,15 @@ class Todo extends PureComponent {
     return biggest + 1;
   }
 
-  handleChange = event => {};
+  handleChange = event => {
+    this.setState({inputValue: event.target.value};
+  };
 
-  createNewRecordByEnter = event => {};
+  createNewRecordByEnter = event => {
+    if (event.key === 'Enter' && this.state.messageInput !== '') {
+      this.createNewRecord();
+    }
+  };
 
   toggleRecordComplete = event => {};
 
@@ -27,7 +33,7 @@ class Todo extends PureComponent {
       <div className='todo t-todo-list'>
         <div className='todo-item todo-item-new'>
           <input type="text" className='todo-input t-input' placeholder='Введите задачу' />
-          <span className='plus t-plus'>+</span>
+          <span className='plus t-plus' onClick={this.createNewRecord}>+</span>
         </div>
         {this.renderRecord()}
       </div>
