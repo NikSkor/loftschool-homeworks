@@ -13,7 +13,7 @@ state = {
 }
 
 authorize = (email, password) => {
-  if (email == this.validEmail && password == this.validPassword) {
+  if (email === this.validEmail && password === this.validPassword) {
     this.setState({
         email: email,
         authorizeError: '',
