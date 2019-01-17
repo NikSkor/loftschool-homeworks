@@ -10,10 +10,9 @@ const withLocalstorage = (localStorageKey, initValue) => (WpappedComponent) => {
         loadData() {
             return load(localStorageKey) || initValue;
         }
-        updateData(id) {
-            let loadData = load(localStorageKey);
-            console.log(loadData);
-            update(loadData, id)
+        updateData = (id) => {
+            update(localStorageKey, id);
+            this.forceUpdate();
         }
         render() {
             const {forwardRef, ...rest} = this.props;

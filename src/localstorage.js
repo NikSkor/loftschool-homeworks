@@ -13,19 +13,19 @@ function save(localStorageKey, data) {
   let loader=load(localStorageKey);
   if (loader===null) loader=[];
   loader.push(data);
-  // console.log(loader);
 
   window.localStorage.setItem(localStorageKey, JSON.stringify(loader));
 }
 function update(localStorageKey, id) {
-  let loader=window.localStorage.getItem(localStorageKey);
-  // if (loader===null) loader=[];
-// console.log(loader);
-  // let storage = window.localStorage.localStorageKey;
-  if (loader) {
+  let loader=load(localStorageKey);
+  // console.log(loader);
+  if (loader.length > 0) {
     loader.forEach(elem => {
-      if (elem.id === id) {
-        elem.isComplete==='false' ? elem.isComplete='true' : elem.isComplete='false'
+      console.log(elem)
+
+      if (elem.id == id) {
+        (elem.isComplete === false) ? elem.isComplete = true : elem.isComplete = false
+
       }
     });
     window.localStorage.setItem(localStorageKey, JSON.stringify(loader));

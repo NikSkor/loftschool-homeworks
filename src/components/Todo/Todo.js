@@ -26,9 +26,8 @@ class Todo extends PureComponent {
   };
 
   toggleRecordComplete = event => {
-    let index = event.target.dataset.key;
-    this.props.updateData(index);
-    // console.log(index);
+    let id = event.target.dataset.key;
+    this.props.updateData(id);
     this.forceUpdate();
   };
 
@@ -47,7 +46,6 @@ class Todo extends PureComponent {
 
   render() {
     let info = this.props.savedData;
-    // console.log(info);
 
     return <Card title="Список дел">
       <div className='todo t-todo-list' onKeyUp={this.createNewRecordByEnter}>
@@ -64,14 +62,15 @@ class Todo extends PureComponent {
   }
 
   renderEmptyRecord() {
-    return <div>ж ж ж</div> ;
+    return null ;
   }
 
   renderRecord = record => {
     let {id,text,isComplete} = record;
     return <div className='todo-item t-todo' key={id}>
         <p className='todo-item__text'>{text}</p>
-        <span className='todo-item__flag t-todo-complete-flag' data-key ={id} onClick={this.toggleRecordComplete} >[X]</span>
+        <span className='todo-item__flag t-todo-complete-flag' data-key ={id} onClick={this.toggleRecordComplete} >{
+          !isComplete ? '[]' : '[x]' }</span>
       </div>
   };
 }
