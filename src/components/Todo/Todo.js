@@ -15,24 +15,33 @@ class Todo extends PureComponent {
   }
 
   handleChange = event => {
-    this.setState({inputValue: event.target.value};
+    this.setState({inputValue: event.target.value})
   };
 
   createNewRecordByEnter = event => {
-    if (event.key === 'Enter' && this.state.messageInput !== '') {
+    if (event.key === 'Enter' && this.state.inputValue !== '') {
       this.createNewRecord();
     }
   };
 
-  toggleRecordComplete = event => {};
+  toggleRecordComplete = event => {
+    let index = event.target.dataset.key;
+    this.forceUpdate();
+    console.log(index);
 
-  createNewRecord = () => {};
+  };
+
+  createNewRecord = () => {
+
+  };
 
   render() {
+    console.log(this.state);
+    console.log(localStorage);
     return <Card title="Список дел">
       <div className='todo t-todo-list'>
         <div className='todo-item todo-item-new'>
-          <input type="text" className='todo-input t-input' placeholder='Введите задачу' />
+          <input type="text" className='todo-input t-input' placeholder='Введите задачу' onChange={this.handleChange} />
           <span className='plus t-plus' onClick={this.createNewRecord}>+</span>
         </div>
         {this.renderRecord()}
@@ -48,7 +57,7 @@ class Todo extends PureComponent {
   renderRecord = record => {
     return <div className='todo-item t-todo'>
         <p className='todo-item__text'>SuperMan</p>
-        <span className='todo-item__flag t-todo-complete-flag'>[X]</span>
+        <span className='todo-item__flag t-todo-complete-flag' data-key ='true' onClick={this.toggleRecordComplete} >[X]</span>
       </div>
   };
 }
