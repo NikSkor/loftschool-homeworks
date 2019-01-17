@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { load, save } from '../../localstorage';
+import { load, save, update } from '../../localstorage';
 
 const withLocalstorage = (localStorageKey, initValue) => (WpappedComponent) => {
     class Wrapper extends Component {
@@ -10,14 +10,20 @@ const withLocalstorage = (localStorageKey, initValue) => (WpappedComponent) => {
         loadData() {
             return load(localStorageKey) || initValue;
         }
+        updateData(id) {
+            let loadData = load(localStorageKey);
+            console.log(loadData);
+            update(loadData, id)
+        }
         render() {
             const {forwardRef, ...rest} = this.props;
 
             return (
                 <WpappedComponent {...rest}
                 ref={forwardRef}
-                savedData={this.loadData}
+                savedData={this.loadData()}
                 saveData={this.saveData}
+                updateData={this.updateData}
                 />
             )
         }
