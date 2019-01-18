@@ -20,21 +20,24 @@ class Todo extends PureComponent {
   };
 
   createNewRecordByEnter = event => {
-    if (event.key === 'Enter' && this.state.inputValue !== '') {
+    const {inputValue} = this.state;
+    if (event.key === 'Enter' && inputValue !== '') {
       this.createNewRecord();
     }
   };
 
   toggleRecordComplete = event => {
     let id = event.target.dataset.key;
+    let props = this.props;
     this.props.updateData(id);
     this.forceUpdate();
   };
 
   createNewRecord = () => {
     let state=this.state.inputValue;
+    let props = this.props;
     if (state) {
-      this.props.saveData({
+      props.saveData({
         id: this.getId(),
         text: state,
         isComplete: false
@@ -45,17 +48,22 @@ class Todo extends PureComponent {
   };
 
   render() {
-    let info = this.props.savedData;
+    const {savedData} = this.props;
 
     return <Card title="Список дел">
       <div className='todo t-todo-list' onKeyUp={this.createNewRecordByEnter}>
         <div className='todo-item todo-item-new'>
-          <input type="text" className='todo-input t-input' placeholder='Введите задачу' onChange={this.handleChange} value={this.state.inputValue} />
+          <input 
+          type="text" 
+          className='todo-input t-input' 
+          placeholder='Введите задачу' 
+          onChange={this.handleChange} 
+          value={this.state.inputValue} />
           <span className='plus t-plus' onClick={this.createNewRecord}>+</span>
         </div>
-        {info.length > 0 ? 
-        info.map((elem, i) => (this.renderRecord(elem, i)))
-         : this.renderEmptyRecord()}
+        {savedData.length > 0 
+        ? savedData.map((elem, i) => (this.renderRecord(elem, i)))
+        : this.renderEmptyRecord()}
       </div>
     </Card>
     
