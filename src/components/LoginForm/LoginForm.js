@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { AuthProvider, withAuth } from '../../context/Auth/Auth';
+import { withAuth } from '../../context/Auth/Auth';
 import style from './LoginForm.module.css';
 
 class LoginForm extends Component{
