@@ -12,8 +12,7 @@ class LoginForm extends Component{
 
 
     changeHandler=(e) => {
-        let name = e.target.name;
-        let value = e.target.value;
+        let {name, value} = e.target;
         this.setState({[name]: value});
     }
     loginHandler = (e) => {
@@ -55,10 +54,7 @@ class LoginForm extends Component{
                         />
                     </label>
                 </p>
-                {authError 
-                ? <p className={style.error}>{authError}</p>
-                : null
-                }
+                {authError && <p className={style.error}>{authError}</p>}
                 <div className={style.buttons}>
                     <button className={`${style.button} t-login`} >Войти</button>
                 </div>
