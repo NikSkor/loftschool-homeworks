@@ -21,41 +21,63 @@ export default (state = [], action) => {
     }
     case MOVE_ORDER_NEXT: {
       let newOrder=Object.assign([], state);
+
       let payload = action.payload;
       newOrder.forEach(element => {
-        if (element.id===payload.id){
+        if (element.id===payload){
           if(element.position === 'clients'){
-            element.position='conveyor_1'
+            element.position='conveyor_1';
           }
-          for (let i=1; i<4; i++) {
-            if(element.position === `conveyor_${i}`){
-              element.position = `conveyor_${i+1}`
+          else if(element.position === `conveyor_1`){
+              element.position = `conveyor_2`
+          }
+          else if(element.position === `conveyor_2`){
+            element.position = `conveyor_3`
+          }
+          else if(element.position === `conveyor_3`){
+          element.position = `conveyor_4`
+          }
+          else if(element.position === 'conveyor_4'){
+            if (element.recipe.length===element.ingredients.length) {
+              element.position='finish'
             }
+            
           }
-          if(element.position === 'conveyor_4'){
-            element.position='finish'
-          }
-        }
-
-        
+        } 
       });
-      return newOrder;
+      return [...state, newOrder];
     }
     case MOVE_ORDER_BACK: {
       let newOrder=Object.assign([], state);
       let payload = action.payload;
       newOrder.forEach(element => {
-        if (element.id===payload.id){
-          for (let i=4; i>1; i--) {
-            if(element.position === `conveyor_${i}`){
-              element.position = `conveyor_${i-1}`
-            }
+        if (element.id===payload){
+          if(element.position === `conveyor_4`){
+              element.position = `conveyor_3`
+          }
+          else if(element.position === `conveyor_3`){
+            element.position = `conveyor_2`
+          }
+          else if(element.position === `conveyor_2`){
+          element.position = `conveyor_1`
           }
         }});
       return newOrder;
     }
     case ADD_INGREDIENT: {
-      return state;
+      const { from, ingredient } = action.payload;
+      let newOrder=Object.assign([], state);
+      newOrder.forEach(element => {
+        if (element.position === from){
+          element.recipe.forEach(elem => {
+            if (elem === ingredient){
+              element.ingredients.push(ingredient)
+            }
+          }) 
+          }
+        }
+      )
+      return [...state, newOrder];
     }
     default:
       return state;
