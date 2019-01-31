@@ -9,6 +9,18 @@ import { ADD_INGREDIENT } from '../actions/ingredients';
 
 export default (state = [], action) => {
   switch (action.type) {
+    case CREATE_NEW_ORDER: {
+
+    }
+    case MOVE_ORDER_NEXT: {
+
+    }
+    case MOVE_ORDER_BACK: {
+
+    }
+    case ADD_INGREDIENT: {
+      
+    }
     default:
       return state;
   }
