@@ -65,19 +65,22 @@ export default (state = [], action) => {
       return newOrder;
     }
     case ADD_INGREDIENT: {
-      const { from, ingredient } = action.payload;
-      let newOrder=Object.assign([], state);
-      newOrder.forEach(element => {
-        if (element.position === from){
-          element.recipe.forEach(elem => {
-            if (elem === ingredient){
-              element.ingredients.push(ingredient)
-            }
-          }) 
-          }
+      let payload = action.payload;
+      const newOrder = state.find(
+        order => order.position === payload.from
+      );
+      if (!newOrder) return state;
+
+      return state.map(order => {
+        if (order.id === newOrder.id) {
+          return {
+            ...order,
+            ingredients: [...order.ingredients, payload.ingredient]
+          };
+        } else {
+          return order;
         }
-      )
-      return [...state, newOrder];
+      })
     }
     default:
       return state;
