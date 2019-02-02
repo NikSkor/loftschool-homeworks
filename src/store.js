@@ -11,7 +11,7 @@ const combine = compose(
 )
 
 const createAppStore = () => {
-  const store = createStore(rootReducer, combine)
+  const store = createStore(rootReducer, combine);
 
   sagaMiddleware.run(rootSaga);
 

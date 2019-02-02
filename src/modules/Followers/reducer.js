@@ -4,36 +4,29 @@ import { fetchRequest, fetchSuccess, fetchFailure } from './actions';
 
 const isLoading = handleActions(
     {
-        [fetchRequest]:(state={}) => {
-        state.isLoading = true
-        },
-        [fetchSuccess]:(state={}) => {
-            state.isLoading = false
-        },
-        [fetchFailure]:(state={}) => {
-            state.isLoading = false
-        },  
+        [fetchRequest]:(state={}) =>
+        true,
+        [fetchSuccess]:(state={}) => 
+        false,
+        [fetchFailure]:(state={}) =>
+        false,  
     }, false
 )
 
 const data = handleActions(
     {
-        [fetchSuccess]: (state={}, {payload}) => {
-            state.data = payload
-        }
+        [fetchSuccess]: (state={}, {payload}) =>
+        payload
     }, null
 )
 
 const error = handleActions({
-        [fetchRequest]:(state={}) => {
-            state.error = null
-        },
-        [fetchSuccess]:(state={}) => {
-            state.error = null
-        },
-        [fetchFailure]:(state={}, {payload}) => {
-            state.error = payload
-        },
+        [fetchRequest]:(state={}) =>
+        null,
+        [fetchSuccess]:(state={}) =>
+        null,
+        [fetchFailure]:(state={}, {payload}) =>
+        payload,
 }, null
 );
 

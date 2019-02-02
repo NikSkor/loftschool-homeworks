@@ -4,8 +4,8 @@ import { addApiKey } from './actions';
 
 const apiKey = handleActions(
     {
-      [addApiKey]: (state ={}, { payload }) => {
-          state.apiKey = payload }
+      [addApiKey]: (state ={}, { payload }) =>
+        payload
     },
     null
   );
